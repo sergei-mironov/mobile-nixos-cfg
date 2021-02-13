@@ -41,3 +41,7 @@ Resources
 
 * https://github.com/knedlsepp/flakephone
 
+**Fun**
+
+* Nix maintainers found out Nix icon on a PinePhone site, to their surprise https://discourse.nixos.org/t/nixos-on-home-page-of-pinephone/4765
+
