@@ -15,6 +15,12 @@ Usage
 4. ???
 5. Nothing valuable here yet.
 
+Notes
+-----
+
+* To make a shallow fetch of a specific commit, do
+  `git fetch --depth 1 origin <commit>`
+
 Resources
 ---------
 

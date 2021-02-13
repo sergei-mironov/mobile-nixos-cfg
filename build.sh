@@ -2,6 +2,15 @@
 
 CWD=`pwd`
 
-NIX_PATH="nixpkgs=$CWD/modules/nixpkgs" \
-  nix-build $CWD/modules/mobile-nixos \
-    --argstr device pine64-pinephone -A build.u-boot
+set -e -x
+
+export NIX_PATH="nixpkgs=$CWD/modules/nixpkgs"
+export DEVICE="pine64-pinephone"
+
+nix-build $CWD/modules/mobile-nixos \
+  --argstr device "$DEVICE" \
+  -A build.disk-image
+
+nix-build $CWD/modules/mobile-nixos \
+  --argstr device "$DEVICE" \
+  -A build.u-boot
