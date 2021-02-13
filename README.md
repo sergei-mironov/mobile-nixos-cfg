@@ -8,8 +8,10 @@ Also I expect it to contain scripts and customized configurations.
 Usage
 -----
 
+0. Install [Nix](https://nixos.org/nix)
 1. `git clone --recursive https://github.com/grwlf/mobile-nixos-cfg`
-2. `./build.sh`
+2. `cd mobile-nixos-cfg`
+3. `./build.sh`
 
 Resources
 ---------
