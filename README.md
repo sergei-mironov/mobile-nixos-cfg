@@ -12,6 +12,8 @@ Usage
 1. `git clone --recursive https://github.com/grwlf/mobile-nixos-cfg`
 2. `cd mobile-nixos-cfg`
 3. `./build.sh`
+4. ???
+5. Nothing valuable here yet.
 
 Resources
 ---------
