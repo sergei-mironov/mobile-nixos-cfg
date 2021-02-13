@@ -24,7 +24,20 @@ Notes
 Resources
 ---------
 
+**General**
+
 * Getting started https://mobile.nixos.org/getting-started.html
 * Discource https://discourse.nixos.org/t/mobile-nixos-progress-thread/342/51
 * GitHub https://github.com/NixOS/mobile-nixos
 * Hydra status page https://hydra.nixos.org/build/134431266#tabs-buildinputs
+
+**PinePhone general**
+
+* PinePhone Installation Instructions https://wiki.pine64.org/wiki/PinePhone_Installation_Instructions
+* nOOb microSD flashing https://wiki.pine64.org/wiki/NOOB#Step-by-Step_Instructions_to_Flashing_MicroSD_Cards
+* https://news.ycombinator.com/item?id=23130247
+
+**Mobile nixers**
+
+* https://github.com/knedlsepp/flakephone
+
