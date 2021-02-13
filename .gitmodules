@@ -1,0 +1,6 @@
+[submodule "modules/mobile-nixos"]
+	path = modules/mobile-nixos
+	url = git@github.com:NixOS/mobile-nixos.git
+[submodule "modules/nixpkgs"]
+	path = modules/nixpkgs
+	url = https://github.com/NixOS/nixpkgs.git
