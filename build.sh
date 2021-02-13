@@ -13,4 +13,8 @@ nix-build $CWD/modules/mobile-nixos \
 
 nix-build $CWD/modules/mobile-nixos \
   --argstr device "$DEVICE" \
+  -A build.boot-partition
+
+nix-build $CWD/modules/mobile-nixos \
+  --argstr device "$DEVICE" \
   -A build.u-boot
