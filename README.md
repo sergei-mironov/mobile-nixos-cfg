@@ -40,6 +40,7 @@ Resources
 **Mobile nixers**
 
 * https://github.com/knedlsepp/flakephone
+* Noob question from me https://discourse.nixos.org/t/mobile-nixos-progress-thread/342/57?u=sergeymironov
 
 **Fun**
 
