@@ -1,9 +1,9 @@
 What is it?
 -----------
 
-This is an umbrella repo for my Mobile NixOS experiemnts. My primary target
-device is PinePhone. The repo will link other valuable repos as Git submodules.
-Also I expect it to contain scripts and customized configurations.
+This is an umbrella repo for my Pine64 and MobileNixOS experiemnts. This repo
+may link other projects as Git submodules. Also I expect it to contain scripts
+and customized configurations.
 
 Usage
 -----
@@ -37,6 +37,7 @@ Resources
 * PinePhone Installation Instructions https://wiki.pine64.org/wiki/PinePhone_Installation_Instructions
 * nOOb microSD flashing https://wiki.pine64.org/wiki/NOOB#Step-by-Step_Instructions_to_Flashing_MicroSD_Cards
 * https://news.ycombinator.com/item?id=23130247
+* MicroSD extender https://pine64.com/product/pinephone-microsd-extender/
 
 **Mobile nixers**
 
