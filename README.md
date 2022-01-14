@@ -21,6 +21,23 @@ Notes
 * To make a shallow fetch of a specific commit, do
   `git fetch --depth 1 origin <commit>`
 
+### Flashing internal eMMC
+
+* Original document https://wiki.pine64.org/wiki/PinePhone_Installation_Instructions#Using_JumpDrive
+* Jumpdrive page https://github.com/dreemurrs-embedded/Jumpdrive
+
+The algorithm:
+
+1. Insert the TF-sdcard to your cardreader and connect it to PC
+2. Run `sh ./script/flash-jumpdrive.sh`
+3. Make sure the script detects the sdcard correctly, press `y`
+4. Type in the `sudo` password if set. The sdcard is now the jumpdrive sdcard
+5. Move the sdcard from the PC to the Pinephone
+6. Boot the Pinephone and connect it to the PC with USB cable. eMMC flash will
+   appear.
+7. (TODO) write your image of choice to the eMMC
+8. Remove jumpdrive sdcard from the Pinephone
+
 Resources
 ---------
 
@@ -38,13 +55,15 @@ Resources
 * nOOb microSD flashing https://wiki.pine64.org/wiki/NOOB#Step-by-Step_Instructions_to_Flashing_MicroSD_Cards
 * https://news.ycombinator.com/item?id=23130247
 * MicroSD extender https://pine64.com/product/pinephone-microsd-extender/
+* PostmarketOS docs on Pinephone https://wiki.postmarketos.org/wiki/PINE64_PinePhone_(pine64-pinephone)
 
 **Mobile nixers**
 
 * https://github.com/knedlsepp/flakephone
 * Noob question from me https://discourse.nixos.org/t/mobile-nixos-progress-thread/342/57?u=sergeymironov
+* Tomf blog https://git.sr.ht/~tomf/notes/tree/master/item/pinephone-nixos-getting-started.md
 
 **Fun**
 
-* Nix maintainers found out Nix icon on a PinePhone site, to their surprise https://discourse.nixos.org/t/nixos-on-home-page-of-pinephone/4765
+* Nix maintainers found out Nix icon on the PinePhone site, to their surprise https://discourse.nixos.org/t/nixos-on-home-page-of-pinephone/4765
 
