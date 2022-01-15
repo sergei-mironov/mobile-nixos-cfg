@@ -10,7 +10,7 @@ customized configurations.
 Environment
 -----------
 
-* [Pinephone](https://www.pine64.org/pinephone/) and USB cable
+* [Pinephone](https://www.pine64.org/pinephone/) and a USB cable
 * Host PC with the [Nix](https://nixos.org/nix) package manager installed
 * 32Gb SDcard and USB cardreader
 
