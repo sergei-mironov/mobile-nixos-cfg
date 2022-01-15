@@ -10,9 +10,9 @@ customized configurations.
 Environment
 -----------
 
-* Host PC with [Nix](https://nixos.org/nix) package managere
 * [Pinephone](https://www.pine64.org/pinephone/) and USB cable
-* SDcard and USB cardreader
+* Host PC with the [Nix](https://nixos.org/nix) package manager installed
+* 32Gb SDcard and USB cardreader
 
 Usage
 -----
@@ -32,7 +32,7 @@ The algorithm:
 6. Boot the Pinephone and connect it to the PC with USB cable. eMMC flash will
    appear in the list of Host PC's block devices (verify it with `lsblk`).
 
-Now one can flash internal eMMC from the Host PC.
+Now one can flash the phone's internal eMMC from the Host PC.
 
 ### Flashing internal eMMC card with Mobile NixOS image
 
