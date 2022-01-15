@@ -8,6 +8,11 @@ and customized configurations.
 Usage
 -----
 
+### Building Mobile NixOS
+
+* Tomf blog provided a good set of instructions https://git.sr.ht/~tomf/notes/tree/master/item/pinephone-nixos-getting-started.md
+* Aarch64-related image https://github.com/NixOS/mobile-nixos/issues/373
+
 0. Install [Nix](https://nixos.org/nix)
 1. `git clone --recursive https://github.com/grwlf/mobile-nixos-cfg`
 2. `cd mobile-nixos-cfg`
@@ -15,13 +20,7 @@ Usage
 4. ???
 5. Nothing valuable here yet.
 
-Notes
------
-
-* To make a shallow fetch of a specific commit, do
-  `git fetch --depth 1 origin <commit>`
-
-### Flashing internal eMMC
+### Flashing the internal eMMC
 
 * Original document https://wiki.pine64.org/wiki/PinePhone_Installation_Instructions#Using_JumpDrive
 * Jumpdrive page https://github.com/dreemurrs-embedded/Jumpdrive
@@ -37,6 +36,12 @@ The algorithm:
    appear.
 7. (TODO) write your image of choice to the eMMC
 8. Remove jumpdrive sdcard from the Pinephone
+
+Notes
+-----
+
+* To make a shallow fetch of a specific commit, do
+  `git fetch --depth 1 origin <commit>`
 
 Resources
 ---------
