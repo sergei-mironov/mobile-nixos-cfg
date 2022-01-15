@@ -25,7 +25,8 @@ Usage
 The algorithm:
 
 1. Insert the TF-sdcard to your cardreader and connect it to the Host PC
-2. Run `sh ./script/flash-jumpdrive.sh`
+2. Run the [flash-jumpdrive.sh](./script/flash-jumpdrive.sh) script `sh
+   ./script/flash-jumpdrive.sh`
 3. Make sure the script detects the sdcard correctly, press `y`
 4. Type in the `sudo` password if set. The sdcard is now the jumpdrive sdcard
 5. Move the sdcard from the cardreader to the Pinephone
@@ -48,8 +49,9 @@ I only tested building MobileNixos image using `binfmt` hack described in [1].
      the internal eMMC is listed among the PC block devices (`lsblk`).
 3. Make sure that `mobile-nixos` and `nixpkgs` submodules are checked-out (`git
    submodule update --init --recursive`).
-4. Edit the `DEVL` variable of `script/flash-mobile-nixos`. Set it to the
-   correct name of internal eMMC device.
+4. Edit the `DEVL` variable of
+   [flash-mobile-nixos](./script/flash-mobile-nixos). Set it to the correct name
+   of internal eMMC device.
 5. Run `sh script/flash-mobile-nixos`
 
 
