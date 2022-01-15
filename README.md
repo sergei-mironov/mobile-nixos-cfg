@@ -1,41 +1,56 @@
 What is it?
 -----------
 
-This is an umbrella repo for my Pine64 and MobileNixOS experiemnts. This repo
-may link other projects as Git submodules. Also I expect it to contain scripts
-and customized configurations.
+This is an umbrella repo for my [Pinephone](https://www.pine64.org/pinephone/)
+and [MobileNixOS](https://mobile.nixos.org/index.html) experiemnts. This repo
+may link other projects as Git submodules. I expect it to contain scripts and
+customized configurations.
+
+
+Environment
+-----------
+
+* Host PC with [Nix](https://nixos.org/nix) package managere
+* [Pinephone](https://www.pine64.org/pinephone/) and USB cable
+* SDcard and USB cardreader
 
 Usage
 -----
 
-### Building Mobile NixOS
+### Flashing the external SDcard with the Jumpdrive utility
 
-* Tomf blog provided a good set of instructions https://git.sr.ht/~tomf/notes/tree/master/item/pinephone-nixos-getting-started.md
-* Aarch64-related image https://github.com/NixOS/mobile-nixos/issues/373
-
-0. Install [Nix](https://nixos.org/nix)
-1. `git clone --recursive https://github.com/grwlf/mobile-nixos-cfg`
-2. `cd mobile-nixos-cfg`
-3. `./build.sh`
-4. ???
-5. Nothing valuable here yet.
-
-### Flashing the internal eMMC
-
-* Original document https://wiki.pine64.org/wiki/PinePhone_Installation_Instructions#Using_JumpDrive
+* The original document https://wiki.pine64.org/wiki/PinePhone_Installation_Instructions#Using_JumpDrive
 * Jumpdrive page https://github.com/dreemurrs-embedded/Jumpdrive
 
 The algorithm:
 
-1. Insert the TF-sdcard to your cardreader and connect it to PC
+1. Insert the TF-sdcard to your cardreader and connect it to the Host PC
 2. Run `sh ./script/flash-jumpdrive.sh`
 3. Make sure the script detects the sdcard correctly, press `y`
 4. Type in the `sudo` password if set. The sdcard is now the jumpdrive sdcard
-5. Move the sdcard from the PC to the Pinephone
+5. Move the sdcard from the cardreader to the Pinephone
 6. Boot the Pinephone and connect it to the PC with USB cable. eMMC flash will
-   appear.
-7. (TODO) write your image of choice to the eMMC
-8. Remove jumpdrive sdcard from the Pinephone
+   appear in the list of Host PC's block devices (verify it with `lsblk`).
+
+Now one can flash internal eMMC from the Host PC.
+
+### Flashing internal eMMC card with Mobile NixOS image
+
+* [1] Tomf blog provided a good set of instructions https://git.sr.ht/~tomf/notes/tree/master/item/pinephone-nixos-getting-started.md
+* [2] Aarch64 image issue https://github.com/NixOS/mobile-nixos/issues/373
+
+I only tested building MobileNixos image using `binfmt` hack described in [1].
+
+1. Enable `binfmt` boot option as described in [1].
+2. Make sure that:
+   - External SDcard is flashed with Jumpdrive utility
+   - The pinephone is booted from Jumpdrive SDcard, connected to the Host PC and
+     the internal eMMC is listed among the PC block devices (`lsblk`).
+3. Make sure that `mobile-nixos` and `nixpkgs` submodules are checked-out (`git
+   submodule update --init --recursive`).
+4. Edit the `DEVL` variable of `script/flash-mobile-nixos`. Set it to the
+   correct name of internal eMMC device.
+5. Run `sh script/flash-mobile-nixos`
 
 Notes
 -----
