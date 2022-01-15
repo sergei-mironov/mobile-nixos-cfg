@@ -50,9 +50,9 @@ I only tested building MobileNixos image using `binfmt` hack described in [1].
 3. Make sure that `mobile-nixos` and `nixpkgs` submodules are checked-out (`git
    submodule update --init --recursive`).
 4. Edit the `DEVL` variable of
-   [flash-mobile-nixos](./script/flash-mobile-nixos). Set it to the correct name
+   [flash-mobile-nixos](./script/flash-mobile-nixos.sh). Set it to the correct name
    of internal eMMC device.
-5. Run `sh script/flash-mobile-nixos`
+5. Run `sh script/flash-mobile-nixos.sh`
 
 
 ### Updating the system over SSH
