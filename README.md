@@ -52,6 +52,18 @@ I only tested building MobileNixos image using `binfmt` hack described in [1].
    correct name of internal eMMC device.
 5. Run `sh script/flash-mobile-nixos`
 
+
+### Updating the system over SSH
+
+How to update the mobile nixos over SSH?
+
+The idea is to build the toplevel and then upload it using `nix-copy-closure`
+over SSH. This PR offers some hints on how to do it
+https://github.com/NixOS/mobile-nixos/issues/441#issuecomment-990642848
+
+1. `sh script/build-mobile-nixos.sh -A config.system.build.toplevel`
+2. (TODO) figure out how to SSH etc
+
 Notes
 -----
 
@@ -61,13 +73,15 @@ Notes
 Resources
 ---------
 
-**General**
+**MobileNixos general**
 
 * Getting started https://mobile.nixos.org/getting-started.html
 * Discource https://discourse.nixos.org/t/mobile-nixos-progress-thread/342/51
 * GitHub https://github.com/NixOS/mobile-nixos
 * Hydra status page https://hydra.nixos.org/build/134431266#tabs-buildinputs
 * Main (big) NixOS wiki page about Pinephone https://nixos.wiki/wiki/PinePhone
+* PR related to the emulation https://github.com/NixOS/mobile-nixos/pull/253
+* Custom Qemu port (no GPU) https://unxp.fr/post/2020/pinephone_on_qemu_emulation/
 
 **PinePhone general**
 
