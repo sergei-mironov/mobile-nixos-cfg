@@ -71,13 +71,10 @@ distinguishthe following categories of the software:
 * Stage-1 software (system stuff)
 * Stage-2 software (GUI, etc)
 
-Mobile Nixos allows users to update Stage-2 software on-the-fly (I've tested
-this), while the kernel and Stage-1 updates probably require re-flashing (not
-sure on this part).
 
-Here is what we do to update the Stage-2 software. The idea is to build the
-toplevel package and then upload it's closure using `nix-copy-closure` over SSH.
-This PR offers some hints on how to do it
+The method shown below allows one to update Stage-2 software **for the current
+boot**. The idea is to build the toplevel package and then upload it's closure
+using `nix-copy-closure` over SSH.  This PR offers some hints on how to do it
 https://github.com/NixOS/mobile-nixos/issues/441#issuecomment-990642848
 
 1. Turn the Pinephone on, connect it to your local WiFi network and figure out
