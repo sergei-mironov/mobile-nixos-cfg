@@ -57,18 +57,53 @@ it: https://github.com/NixOS/mobile-nixos/pull/455
    [flash-mobile-nixos](./script/flash-mobile-nixos.sh). Set it to the correct name
    of internal eMMC device.
 5. Run `sh script/flash-mobile-nixos.sh`
-
+6. Upon completion, turn the Pinephone off, remove the Jumpdrive sdcard from the
+   Pinephone and turn it on again. Nixos XFCE example image should boot and the
+   XFCE desktop should finally appear.
 
 ### Updating the system over SSH
 
-How to update the mobile nixos over SSH?
+As far as I understand the [Mobile Nixos boot
+process](https://mobile.nixos.org/boot_process.html), Mobile Nixos
+distinguishthe following categories of the software:
 
-The idea is to build the toplevel and then upload it using `nix-copy-closure`
-over SSH. This PR offers some hints on how to do it
+* The Linux kernel
+* Stage-1 software (system stuff)
+* Stage-2 software (GUI, etc)
+
+Mobile Nixos allows users to update Stage-2 software on-the-fly (I've tested
+this), while the kernel and Stage-1 updates probably require re-flashing (not
+sure on this part).
+
+Here is what we do to update the Stage-2 software. The idea is to build the
+toplevel package and then upload it's closure using `nix-copy-closure` over SSH.
+This PR offers some hints on how to do it
 https://github.com/NixOS/mobile-nixos/issues/441#issuecomment-990642848
 
-1. `sh script/build-mobile-nixos.sh -A config.system.build.toplevel`
-2. (TODO) figure out how to SSH etc
+1. Turn the Pinephone on, connect it to your local WiFi network and figure out
+   its IP address. Mine got 192.168.1.38.
+2. Edit the [local.nix](./nix/local.nix) configuration, say, add some
+   packages from the nixpkgs.
+3. `(host) $ sh script/build-mobile-nixos.sh -A config.system.build.toplevel`
+4. `(host) $ nix-copy-closure --to root@192.168.1.38 ./result`
+   Type-in the Pinephone's root password (was set to `nixos` by default). Nix
+   will move the just-built packages from Host PC to the device.
+5. Switch the Pinephone to the new configuration
+   ```sh
+   (host) $ ssh root@192.168.1.38 `readlink ./result`/bin/switch-to-configuration switch
+   (root@192.168.1.38) Password: 
+   Warning: do not know how to make this configuration bootable; please enable a
+   boot loader.
+   stopping the following units: accounts-daemon.service
+   activating the configuration...
+   setting up /etc...
+   reloading user units for root...
+   reloading user units for nixos...
+   setting up tmpfiles
+   reloading the following units: dbus.service
+   restarting the following units: polkit.service
+   starting the following units: accounts-daemon.service
+   ```
 
 Notes
 -----

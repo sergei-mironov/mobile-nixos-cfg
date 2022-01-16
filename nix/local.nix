@@ -8,6 +8,9 @@
   environment.systemPackages = [
     pkgs.ncdu
     pkgs.htop
-	  # ... etc
+    pkgs.vim
+
+    pkgs.xlibs.xeyes
+    pkgs.xfce.xfce4-battery-plugin # Doesn't work as expected
   ];
 }
