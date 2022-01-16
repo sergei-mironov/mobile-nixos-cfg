@@ -35,14 +35,18 @@ The algorithm:
 
 Now one can flash the phone's internal eMMC from the Host PC.
 
-### Flashing internal eMMC card with Mobile NixOS image
+### Flashing internal eMMC card with Mobile NixOS example configuration
 
 * [1] Tomf blog provided a good set of instructions https://git.sr.ht/~tomf/notes/tree/master/item/pinephone-nixos-getting-started.md
 * [2] Aarch64 image issue https://github.com/NixOS/mobile-nixos/issues/373
 
+In this section we will flash the pinephone with the bootable MobileNixos
+example. Currently it has only an absolute minimum of features, like GUI+Wifi.
 I only tested building MobileNixos image using `binfmt` hack described in [1].
+Original configuration doesn't enable SSH by mistake. This mobile-nixos PR fixes
+it: https://github.com/NixOS/mobile-nixos/pull/455
 
-1. Enable `binfmt` boot option as described in [1].
+1. Enable the `binfmt` boot option of the Host PC's kernel as described in [1].
 2. Make sure that:
    - External SDcard is flashed with Jumpdrive utility
    - The pinephone is booted from Jumpdrive SDcard, connected to the Host PC and
@@ -75,15 +79,21 @@ Notes
 Resources
 ---------
 
+**MobileNixos on Pinephone**
+
+* PR about Phosh integration https://github.com/NixOS/mobile-nixos/pull/352
+* NixOS wiki about Pinephones https://nixos.wiki/wiki/PinePhone
+
 **MobileNixos general**
 
 * Getting started https://mobile.nixos.org/getting-started.html
 * Discource https://discourse.nixos.org/t/mobile-nixos-progress-thread/342/51
 * GitHub https://github.com/NixOS/mobile-nixos
 * Hydra status page https://hydra.nixos.org/build/134431266#tabs-buildinputs
-* Main (big) NixOS wiki page about Pinephone https://nixos.wiki/wiki/PinePhone
-* PR related to the emulation https://github.com/NixOS/mobile-nixos/pull/253
 * Custom Qemu port (no GPU) https://unxp.fr/post/2020/pinephone_on_qemu_emulation/
+* PR related to the emulation https://github.com/NixOS/mobile-nixos/pull/253
+* NixOS wiki on Aarch64 emulation https://nixos.wiki/wiki/NixOS_on_ARM#Compiling_through_QEMU
+* PR+discussion about the emulation https://github.com/NixOS/mobile-nixos/issues/3
 
 **PinePhone general**
 
@@ -92,12 +102,15 @@ Resources
 * https://news.ycombinator.com/item?id=23130247
 * MicroSD extender https://pine64.com/product/pinephone-microsd-extender/
 * PostmarketOS docs on Pinephone https://wiki.postmarketos.org/wiki/PINE64_PinePhone_(pine64-pinephone)
+* Jumpdrive https://github.com/dreemurrs-embedded/Jumpdrive
+* Jumpdrive boot menu issue https://github.com/dreemurrs-embedded/Jumpdrive/issues/11
 
 **Mobile nixers**
 
 * https://github.com/knedlsepp/flakephone
 * Noob question from me https://discourse.nixos.org/t/mobile-nixos-progress-thread/342/57?u=sergeymironov
 * Tomf blog https://git.sr.ht/~tomf/notes/tree/master/item/pinephone-nixos-getting-started.md
+* Mhuesch https://github.com/mhuesch/pinephone-mobile-nixos-flake-example
 
 **Fun**
 

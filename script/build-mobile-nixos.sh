@@ -25,7 +25,7 @@ if test -z "$ATTR" ; then
 fi
 if test -z "$OUT" ; then
   if test "$ATTR" = "build.disk-image" ; then
-    OUT=build.disk-image
+    OUT=result-mobile-nixos
   else
     OUT=result
   fi
