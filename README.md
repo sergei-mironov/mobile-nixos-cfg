@@ -81,26 +81,13 @@ https://github.com/NixOS/mobile-nixos/issues/441#issuecomment-990642848
    its IP address. Mine got 192.168.1.38.
 2. Edit the [local.nix](./nix/local.nix) configuration, say, add some
    packages from the nixpkgs.
-3. `(host) $ sh script/build-mobile-nixos.sh -A config.system.build.toplevel`
-4. `(host) $ nix-copy-closure --to root@192.168.1.38 ./result`
-   Type-in the Pinephone's root password (was set to `nixos` by default). Nix
-   will move the just-built packages from Host PC to the device.
-5. Switch the Pinephone to the new configuration
-   ```sh
-   (host) $ ssh root@192.168.1.38 `readlink ./result`/bin/switch-to-configuration switch
-   (root@192.168.1.38) Password: 
-   Warning: do not know how to make this configuration bootable; please enable a
-   boot loader.
-   stopping the following units: accounts-daemon.service
-   activating the configuration...
-   setting up /etc...
-   reloading user units for root...
-   reloading user units for nixos...
-   setting up tmpfiles
-   reloading the following units: dbus.service
-   restarting the following units: polkit.service
-   starting the following units: accounts-daemon.service
-   ```
+3. Adjust the `DEVIP` variable of
+   [build-switch-toplevel.sh](./script/build-switch-toplevel.sh) and run this
+   script. It may ask device SSH password several times (`nixos` by default).
+
+Now the Pinephone software should be switched to the just-built profile. The old
+profile should be accessable through the recovery menu (shown at
+reboot+volume up).
 
 Notes
 -----
