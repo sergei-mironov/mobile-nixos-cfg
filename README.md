@@ -39,6 +39,7 @@ Now one can flash the phone's internal eMMC from the Host PC.
 
 * [1] Tomf blog provided a good set of instructions https://git.sr.ht/~tomf/notes/tree/master/item/pinephone-nixos-getting-started.md
 * [2] Aarch64 image issue https://github.com/NixOS/mobile-nixos/issues/373
+* On resizing partitions https://github.com/NixOS/mobile-nixos/issues/342
 
 In this section we will flash the pinephone with the bootable MobileNixos
 example. Currently it has only an absolute minimum of features, like GUI+Wifi.
@@ -60,6 +61,14 @@ it: https://github.com/NixOS/mobile-nixos/pull/455
 6. Upon completion, turn the Pinephone off, remove the Jumpdrive sdcard from the
    Pinephone and turn it on again. Nixos XFCE example image should boot and the
    XFCE desktop should finally appear.
+7. Manually resize the partition table on disk and the root filesystem, check
+   the result with `df -h`.
+   ``` sh
+   (pinephone) $ sudo cfdisk /dev/mmcblk2
+   ... Add the remaining free space to the /dev/mmcblk2p4 partition
+   ... Write the new partition
+   (pinephone) $ sudo resize2fs /dev/mmcblk2p4
+   ```
 
 ### Updating the system over SSH
 
