@@ -35,7 +35,7 @@ The algorithm:
 
 Now one can flash the phone's internal eMMC from the Host PC.
 
-### Flashing internal eMMC card with Mobile NixOS example configuration
+### Flashing internal eMMC card with the Mobile NixOS example configuration
 
 * [1] Tomf blog provided a good set of instructions https://git.sr.ht/~tomf/notes/tree/master/item/pinephone-nixos-getting-started.md
 * [2] Aarch64 image issue https://github.com/NixOS/mobile-nixos/issues/373
@@ -70,29 +70,21 @@ it: https://github.com/NixOS/mobile-nixos/pull/455
    (pinephone) $ sudo resize2fs /dev/mmcblk2p4
    ```
 
-### Updating the system over SSH
+### Updating pinephone over SSH
 
-As far as I understand the [Mobile Nixos boot
-process](https://mobile.nixos.org/boot_process.html), Mobile Nixos
-distinguishthe following categories of the software:
-
-* The Linux kernel
-* Stage-1 software (system stuff)
-* Stage-2 software (GUI, etc)
-
-
-The method shown below allows one to update Stage-2 software **for the current
-boot**. The idea is to build the toplevel package and then upload it's closure
-using `nix-copy-closure` over SSH.  This PR offers some hints on how to do it
-https://github.com/NixOS/mobile-nixos/issues/441#issuecomment-990642848
+The below mothod allows one to update [Stage-2
+software](https://mobile.nixos.org/boot_process.html). The idea is to build the
+toplevel package and then upload it's closure using `nix-copy-closure` over SSH.
+[See also a related PR
+comment](https://github.com/NixOS/mobile-nixos/issues/441#issuecomment-990642848)
 
 1. Turn the Pinephone on, connect it to your local WiFi network and figure out
    its IP address. Mine got 192.168.1.38.
-2. Edit the [local.nix](./nix/local.nix) configuration, say, add some
-   packages from the nixpkgs.
+2. Edit the [local.nix](./nix/local.nix) configuration (replace author's SSH
+   keys, add packages from the nixpkgs).
 3. Adjust the `DEVIP` variable of
-   [build-switch-toplevel.sh](./script/build-switch-toplevel.sh) and run this
-   script. It may ask device SSH password several times (`nixos` by default).
+   [build-switch-toplevel.sh](./script/build-switch-toplevel.sh) and run it. The
+   script may ask device SSH password several times (`nixos` by default).
 
 Now the Pinephone software should be switched to the just-built profile. The old
 profile should be accessable through the recovery menu (shown at
