@@ -101,8 +101,8 @@ Resources
 
 **MobileNixos on Pinephone**
 
-* PR about Phosh integration https://github.com/NixOS/mobile-nixos/pull/352
 * NixOS wiki about Pinephones https://nixos.wiki/wiki/PinePhone
+* PR about Phosh integration https://github.com/NixOS/mobile-nixos/pull/352
 
 **MobileNixos general**
 
