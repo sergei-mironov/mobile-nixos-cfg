@@ -40,6 +40,7 @@ Now one can flash the phone's internal eMMC from the Host PC.
 * [1] Tomf blog provided a good set of instructions https://git.sr.ht/~tomf/notes/tree/master/item/pinephone-nixos-getting-started.md
 * [2] Aarch64 image issue https://github.com/NixOS/mobile-nixos/issues/373
 * On resizing partitions https://github.com/NixOS/mobile-nixos/issues/342
+* A status Issue on MobileNixos installer https://github.com/NixOS/mobile-nixos/issues/374
 
 In this section we will flash the pinephone with the bootable MobileNixos
 example. Currently it has only an absolute minimum of features, like GUI+Wifi.
@@ -89,6 +90,10 @@ comment](https://github.com/NixOS/mobile-nixos/issues/441#issuecomment-990642848
 Now the Pinephone software should be switched to the just-built profile. The old
 profile should be accessable through the recovery menu (shown at
 reboot+volume up).
+
+### Setting up a remote build agent
+
+https://nixos.wiki/wiki/Distributed_build
 
 Notes
 -----
