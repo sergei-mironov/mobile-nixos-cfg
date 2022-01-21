@@ -139,7 +139,7 @@ which also works by default.
    ... edit smth to force rebuilding (TODO: how to --check distributed build?)
    (host) $ sh script/build-mobile-nixos.sh -j0 -A pkgs.mc
    ```
-7. See the host's log and the pinephone's `htop` how it is going.
+7. Watch the host's log and the pinephone's `htop`.
 
 
 Notes
