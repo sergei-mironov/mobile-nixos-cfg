@@ -81,11 +81,12 @@ comment](https://github.com/NixOS/mobile-nixos/issues/441#issuecomment-990642848
 
 1. Turn the Pinephone on, connect it to your local WiFi network and figure out
    its IP address. Mine got 192.168.1.38.
-2. Edit the [local.nix](./nix/local.nix) configuration (replace author's SSH
+2. Edit the [example.nix](./nix/example.nix) configuration (replace author's SSH
    keys, add packages from the nixpkgs).
 3. Adjust the `DEVIP` variable of
-   [build-switch-toplevel.sh](./script/build-switch-toplevel.sh) and run it. The
-   script may ask device SSH password several times (`nixos` by default).
+   [build-switch-toplevel.sh](./script/build-switch-toplevel.sh) and run it.
+   Depending on you current SSH settings, the script may ask for ssh password
+   several times (`nixos` by default).
 
 Now the Pinephone software should be switched to the just-built profile. The old
 profile should be accessable through the recovery menu (shown at
@@ -93,7 +94,53 @@ reboot+volume up).
 
 ### Setting up a remote build agent
 
-https://nixos.wiki/wiki/Distributed_build
+The original post https://nixos.wiki/wiki/Distributed_build
+
+Here we teach the Host PC's nixos to use the Pinephone as a remote build agent.
+Not sure, but it seems that it works faster than host-based build using qemu
+which also works by default.
+
+1. Determine, which user runs builds on the Host PC. In our case, since we are
+   using build daemon of NixOS, the user is `root`.
+2. Setup the passwordless SSH loging from the Host PC's root user to the
+   pinephone.
+   - Add the root's public SSH keys to the `root@pinephone` (done in
+     the [example.nix](./nix/example.nix))
+   - Rebuild and switch the Pinephone's configuration with `sh
+     script/build-switch-toplevel.sh`
+   - Add the `pinephone-builder` section into the `/root/.ssh/config` of the
+     Host.
+3. Add the following snippet to the Host PC's configuration:
+   ```nix
+   { config, pkgs, ... }:
+   {
+     nix.buildMachines = [
+       { hostName = "pinephone-builder";
+         sshUser = "root";
+         systems = ["aarch64-linux"];
+         maxJobs = 1;
+         speedFactor = 2;
+         mandatoryFeatures = [ ];
+       }
+     ] ;
+
+     nix.distributedBuilds = true;
+   }
+   ```
+5. Test the config with
+   ```sh
+   (host) $ sudo nix ping-store --store ssh://pinephone-builder && echo ok
+   ok
+   ```
+6. Now the distributed aarch builder should work on the Pinephone natively. Test
+   with
+   ```sh
+   (host) $ vim modules/nixpkgs/pkgs/tools/misc/mc/default.nix
+   ... edit smth to force rebuilding (TODO: how to --check distributed build?)
+   (host) $ sh script/build-mobile-nixos.sh -j0 -A pkgs.mc
+   ```
+7. See the host's log and the pinephone's `htop` how it is going.
+
 
 Notes
 -----
