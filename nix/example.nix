@@ -24,4 +24,7 @@ in
   users.users.nixos = {
     openssh.authorizedKeys.keys = ssh_pubkeys;
   };
+  users.users.root = {
+    openssh.authorizedKeys.keys = ssh_pubkeys;
+  };
 }
