@@ -6,6 +6,18 @@ and [MobileNixOS](https://mobile.nixos.org/index.html) experiemnts. This repo
 may link other projects as Git submodules. I expect it to contain scripts and
 customized configurations.
 
+<!-- vim-markdown-toc GFM -->
+
+* [Environment](#environment)
+* [Usage](#usage)
+  * [Flashing the external SDcard with the Jumpdrive utility](#flashing-the-external-sdcard-with-the-jumpdrive-utility)
+  * [Flashing internal eMMC card with the Mobile NixOS example configuration](#flashing-internal-emmc-card-with-the-mobile-nixos-example-configuration)
+  * [Updating pinephone over SSH](#updating-pinephone-over-ssh)
+  * [Setting up a remote build agent](#setting-up-a-remote-build-agent)
+* [Notes](#notes)
+* [Resources](#resources)
+
+<!-- vim-markdown-toc -->
 
 Environment
 -----------
