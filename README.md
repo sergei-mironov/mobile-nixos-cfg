@@ -6,12 +6,13 @@ and [MobileNixOS](https://mobile.nixos.org/index.html) experiemnts. This repo
 may link other projects as Git submodules. I expect it to contain scripts and
 customized configurations.
 
+
 <!-- vim-markdown-toc GFM -->
 
 * [Environment](#environment)
 * [Usage](#usage)
-  * [Flashing the external SDcard with the Jumpdrive utility](#flashing-the-external-sdcard-with-the-jumpdrive-utility)
-  * [Flashing internal eMMC card with the Mobile NixOS example configuration](#flashing-internal-emmc-card-with-the-mobile-nixos-example-configuration)
+  * [Flashing external SDcard with Jumpdrive utility](#flashing-external-sdcard-with-jumpdrive-utility)
+  * [Flashing internal eMMC card with Mobile NixOS example configuration](#flashing-internal-emmc-card-with-mobile-nixos-example-configuration)
   * [Updating pinephone over SSH](#updating-pinephone-over-ssh)
   * [Setting up a remote build agent](#setting-up-a-remote-build-agent)
 * [Notes](#notes)
@@ -29,7 +30,7 @@ Environment
 Usage
 -----
 
-### Flashing the external SDcard with the Jumpdrive utility
+### Flashing external SDcard with Jumpdrive utility
 
 * The original document https://wiki.pine64.org/wiki/PinePhone_Installation_Instructions#Using_JumpDrive
 * Jumpdrive page https://github.com/dreemurrs-embedded/Jumpdrive
@@ -47,7 +48,7 @@ The algorithm:
 
 Now one can flash the phone's internal eMMC from the Host PC.
 
-### Flashing internal eMMC card with the Mobile NixOS example configuration
+### Flashing internal eMMC card with Mobile NixOS example configuration
 
 * [1] Tomf blog provided a good set of instructions https://git.sr.ht/~tomf/notes/tree/master/item/pinephone-nixos-getting-started.md
 * [2] Aarch64 image issue https://github.com/NixOS/mobile-nixos/issues/373
