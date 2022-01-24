@@ -25,6 +25,8 @@ if test -z "$CFG" ; then
   else
     die "Doesn't know which configuration to build"
   fi
+else
+  test -f "$CFG" || die "'$CFG' is not a file"
 fi
 
 test -f "$CFG" || \
@@ -47,6 +49,7 @@ fi
 
 nix-build \
   --argstr device pine64-pinephone \
+  --arg pkgs "import $CWD/modules/nixpkgs {}" \
   -A "$ATTR" \
   -o "$OUT" \
   modules/mobile-nixos \

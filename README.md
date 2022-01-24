@@ -15,6 +15,7 @@ customized configurations.
   * [Flashing internal eMMC card with Mobile NixOS example configuration](#flashing-internal-emmc-card-with-mobile-nixos-example-configuration)
   * [Updating pinephone over SSH](#updating-pinephone-over-ssh)
   * [Setting up a remote build agent](#setting-up-a-remote-build-agent)
+  * [Updating the MobileNixos and Nixpkgs submodules](#updating-the-mobilenixos-and-nixpkgs-submodules)
 * [Notes](#notes)
 * [Resources](#resources)
 
@@ -154,6 +155,14 @@ which also works by default.
    ```
 7. Watch the host's log and the pinephone's `htop`.
 
+### Updating the MobileNixos and Nixpkgs submodules
+
+* MobileNixos includes `pkgs.nix` which seems to pin a specific version of
+  nixpkgs
+* An issue with a discussion https://github.com/NixOS/mobile-nixos/issues/93
+* An old comment from 2020 https://discourse.nixos.org/t/build-image-for-pinephone-fail/10002/4
+* For now, I forced MobileNixos to use nixpkgs from the Git-submodule of this
+  repo, and then pinned the submodule to the version mentioned in `pkgs.nix`
 
 Notes
 -----
@@ -168,6 +177,7 @@ Resources
 
 * NixOS wiki about Pinephones https://nixos.wiki/wiki/PinePhone
 * PR about Phosh integration https://github.com/NixOS/mobile-nixos/pull/352
+* All Pinephone open issues and PRs https://github.com/NixOS/mobile-nixos/issues?q=is%3Aopen+pinephone
 
 **MobileNixos general**
 
