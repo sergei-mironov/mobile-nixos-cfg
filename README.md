@@ -7,19 +7,21 @@ may link other projects as Git submodules. I expect it to contain scripts and
 customized configurations.
 
 
-<!-- vim-markdown-toc GFM -->
+<!-- vim-markdown-ntoc GFM -->
 
-* [Environment](#environment)
-* [Usage](#usage)
-  * [Flashing external SDcard with Jumpdrive utility](#flashing-external-sdcard-with-jumpdrive-utility)
-  * [Flashing internal eMMC card with Mobile NixOS example configuration](#flashing-internal-emmc-card-with-mobile-nixos-example-configuration)
-  * [Updating pinephone over SSH](#updating-pinephone-over-ssh)
-  * [Setting up a remote build agent](#setting-up-a-remote-build-agent)
-  * [Updating the MobileNixos and Nixpkgs submodules](#updating-the-mobilenixos-and-nixpkgs-submodules)
-* [Notes](#notes)
-* [Resources](#resources)
+1. [What is it?](#what-is-it?)
+2. [Environment](#environment)
+3. [Usage](#usage)
+   * [Flashing external SDcard with Jumpdrive utility](#flashing-external-sdcard-with-jumpdrive-utility)
+   * [Flashing the internal eMMC card with a Mobile NixOS example configuration](#flashing-the-internal-emmc-card-with-a-mobile-nixos-example-configuration)
+   * [Updating Pinephone over SSH](#updating-pinephone-over-ssh)
+   * [Setting up a remote build agent](#setting-up-a-remote-build-agent)
+   * [Updating the MobileNixos and Nixpkgs submodules](#updating-the-mobilenixos-and-nixpkgs-submodules)
+   * [Switching to a Phosh configuration](#switching-to-a-phosh-configuration)
+4. [Notes](#notes)
+5. [Resources](#resources)
 
-<!-- vim-markdown-toc -->
+<!-- vim-markdown-ntoc -->
 
 Environment
 -----------
@@ -49,7 +51,7 @@ The algorithm:
 
 Now one can flash the phone's internal eMMC from the Host PC.
 
-### Flashing internal eMMC card with Mobile NixOS example configuration
+### Flashing the internal eMMC card with a Mobile NixOS example configuration
 
 * [1] Tomf blog provided a good set of instructions https://git.sr.ht/~tomf/notes/tree/master/item/pinephone-nixos-getting-started.md
 * [2] Aarch64 image issue https://github.com/NixOS/mobile-nixos/issues/373
@@ -85,7 +87,7 @@ it: https://github.com/NixOS/mobile-nixos/pull/455
    (pinephone) $ sudo resize2fs /dev/mmcblk2p4
    ```
 
-### Updating pinephone over SSH
+### Updating Pinephone over SSH
 
 The below mothod allows one to update [Stage-2
 software](https://mobile.nixos.org/boot_process.html). The idea is to build the
@@ -163,6 +165,21 @@ which also works by default.
 * An old comment from 2020 https://discourse.nixos.org/t/build-image-for-pinephone-fail/10002/4
 * For now, I forced MobileNixos to use nixpkgs from the Git-submodule of this
   repo, and then pinned the submodule to the version mentioned in `pkgs.nix`
+
+
+### Switching to a Phosh configuration
+
+1. Checkout the right nixpkgs versions
+2. Describe [build-switch-phosh.sh](./script/build-switch-phosh.sh)
+3. TODO
+
+All
+
+* `export WAYLAND_DISPLAY=wayland-0`
+
+Telegram
+
+* `export QT_QPA_PLATFORM=wayland`
 
 Notes
 -----

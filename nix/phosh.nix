@@ -21,6 +21,8 @@ in
     htop
     vim
     xlibs.xeyes
+    tdesktop
+    firefox-wayland
   ];
 
   users.users.nixos = {
