@@ -18,7 +18,7 @@ customized configurations.
    * [Setting up a remote build agent](#setting-up-a-remote-build-agent)
    * [On updating the MobileNixos and Nixpkgs submodules](#on-updating-the-mobilenixos-and-nixpkgs-submodules)
    * [Switching to a Phosh configuration](#switching-to-a-phosh-configuration)
-   * [Running applications from the Phosh configuraiton](#running-applications-from-the-phosh-configuraiton)
+   * [Running applications from the Phosh configuraiton via SSH](#running-applications-from-the-phosh-configuraiton-via-ssh)
    * [Running the Phosh config in a QEMU emulator](#running-the-phosh-config-in-a-qemu-emulator)
 4. [Notes](#notes)
 5. [Resources](#resources)
