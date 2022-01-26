@@ -1,4 +1,8 @@
-{ lib, pkgs, ... }:
+{ system ? "aarch64-linux"
+}:
+{ lib
+, pkgs
+, ... }:
 let
   ssh_pubkeys = [
     "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCYd45Y/tmUMj1GcC/QGyxlMxA3uQZE8WHu3QclgF/ha2UK1Z70CqSQVBN66S+rvSvAgrJPuEnqOeMIUGssOatSxMZupSOmUi+Wy5mUIE0gcfpZd/OfpsO7tTCCg5WPxatGMrfPGJESiQOnsJCt8Edy24x8hy/yrfARmfqsOS/CsmGagxSovcAfaqiDPiOqFoBS9eY/zJqKC3hr+bi2P8gfN0Nm76MIjOnpamlUCHW4+w30WzJkN8wvOPa1YaEoqLS6Dyvg11nywEcFUhqGI7H4gAkXYaaNU9Z0cbgPMZJf6UgJa0VNpVKTxYkliqoC0xCp4TpUK09hHJvUMrCMBUBD me1@pc1"
@@ -12,7 +16,8 @@ in
   imports = [
     ../modules/mobile-nixos/examples/demo/configuration.nix
   ];
-  nixpkgs.system = "aarch64-linux";
+  nixpkgs.system = system;
+  mobile.outputs.uefi.fwd22_port = 22222;
   environment.systemPackages = with pkgs; [
     ncdu
     htop

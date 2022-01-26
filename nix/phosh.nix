@@ -1,3 +1,5 @@
+{ system ? "aarch64-linux"
+}:
 { lib
 , pkgs
 , ...
@@ -15,7 +17,9 @@ in
   imports = [
     ../modules/mobile-nixos/examples/phosh-demo/configuration.nix
   ];
-  nixpkgs.system = "aarch64-linux";
+  mobile.outputs.uefi.fwd22_port = 22222;
+
+  nixpkgs.system = system;
   environment.systemPackages = with pkgs; [
     ncdu
     htop

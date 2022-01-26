@@ -6,11 +6,14 @@ ATTR=
 OUT=
 ARGS=
 CFG=
+SYS="aarch64-linux"
+TGT=pine64-pinephone
 while test -n "$1" ; do
   case "$1" in
     -A) ATTR="$2"; shift ;;
     -o) OUT="$2"; shift ;;
     -C) CFG="$2"; shift ;;
+    -S) SYS="x86_64-linux"; TGT=uefi-x86_64 ;;
     *) ARGS="$ARGS $1" ;;
   esac
   shift
@@ -33,8 +36,7 @@ test -f "$CFG" || \
   die "Configuration '$CFG' is not a file"
 
 export NIX_PATH=\
-"nixpkgs=$CWD/modules/nixpkgs:"\
-"mobile-nixos-configuration=$CFG"
+"nixpkgs=$CWD/modules/nixpkgs"
 
 if test -z "$ATTR" ; then
   ATTR=build.disk-image
@@ -48,8 +50,9 @@ if test -z "$OUT" ; then
 fi
 
 nix-build \
-  --argstr device pine64-pinephone \
+  --argstr device "$TGT" \
   --arg pkgs "import $CWD/modules/nixpkgs {}" \
+  --arg configuration "import $CFG {system=\"$SYS\";}" \
   -A "$ATTR" \
   -o "$OUT" \
   modules/mobile-nixos \
