@@ -60,11 +60,9 @@ Now one can flash the phone's internal eMMC from the Host PC.
 * On resizing partitions https://github.com/NixOS/mobile-nixos/issues/342
 * A status Issue on MobileNixos installer https://github.com/NixOS/mobile-nixos/issues/374
 
-In this section we will flash the pinephone with the bootable MobileNixos
-example. Currently it has only an absolute minimum of features, like GUI+Wifi.
-I only tested building MobileNixos image using `binfmt` hack described in Tom'f
-blog. The Original configuration doesn't enable SSH by mistake. This
-mobile-nixos PR fixes it: https://github.com/NixOS/mobile-nixos/pull/455
+Here we flash the Pinephone with the bootable MobileNixos
+configuration named [example.nix](./nix/example.nix). Currently it has only an
+absolute minimum of features, like GUI+Wifi.
 
 1. Enable the `binfmt` boot option of the Host PC's kernel as described in the
    Tom'f blog.
@@ -89,6 +87,11 @@ mobile-nixos PR fixes it: https://github.com/NixOS/mobile-nixos/pull/455
    ... Write the new partition
    (pinephone) $ sudo resize2fs /dev/mmcblk2p4
    ```
+
+* Note 1: I only tested the `binfmt` hack described in Tomf's blog.
+* Note 2: The Original configuration doesn't enable SSH by mistake. This
+  mobile-nixos PR fixes it: https://github.com/NixOS/mobile-nixos/pull/455 In
+  this repo the changes should be already applied.
 
 ### Updating Pinephone over SSH
 
