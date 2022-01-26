@@ -16,8 +16,10 @@ customized configurations.
    * [Flashing the internal eMMC card with a Mobile NixOS example configuration](#flashing-the-internal-emmc-card-with-a-mobile-nixos-example-configuration)
    * [Updating Pinephone over SSH](#updating-pinephone-over-ssh)
    * [Setting up a remote build agent](#setting-up-a-remote-build-agent)
-   * [Updating the MobileNixos and Nixpkgs submodules](#updating-the-mobilenixos-and-nixpkgs-submodules)
+   * [On updating the MobileNixos and Nixpkgs submodules](#on-updating-the-mobilenixos-and-nixpkgs-submodules)
    * [Switching to a Phosh configuration](#switching-to-a-phosh-configuration)
+   * [Running applications from the Phosh configuraiton](#running-applications-from-the-phosh-configuraiton)
+   * [Running the Phosh config in a QEMU emulator](#running-the-phosh-config-in-a-qemu-emulator)
 4. [Notes](#notes)
 5. [Resources](#resources)
 
@@ -186,15 +188,15 @@ For the Telegram
 
 * `export QT_QPA_PLATFORM=wayland`
 
-
 ### Running the Phosh config in a QEMU emulator
 
 * A related discussion https://github.com/NixOS/mobile-nixos/issues/3
 
-1. Run [build-switch-phosh.sh](./script/build-switch-phosh.sh) with -S flag
+1. Run [run-qemu-phosh.sh](./script/run-qemu-phosh.sh).
    ```sh
-   (host) $ sh ./script/build-switch-phosh.sh -S
+   (host) $ sh ./script/run-qemu-phosh.sh
    ```
+
 Notes
 -----
 
