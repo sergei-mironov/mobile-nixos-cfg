@@ -53,18 +53,19 @@ Now one can flash the phone's internal eMMC from the Host PC.
 
 ### Flashing the internal eMMC card with a Mobile NixOS example configuration
 
-* [1] Tomf blog provided a good set of instructions https://git.sr.ht/~tomf/notes/tree/master/item/pinephone-nixos-getting-started.md
-* [2] Aarch64 image issue https://github.com/NixOS/mobile-nixos/issues/373
+* Tomf blog provided a good set of instructions https://git.sr.ht/~tomf/notes/tree/master/item/pinephone-nixos-getting-started.md
+* Aarch64 image issue https://github.com/NixOS/mobile-nixos/issues/373
 * On resizing partitions https://github.com/NixOS/mobile-nixos/issues/342
 * A status Issue on MobileNixos installer https://github.com/NixOS/mobile-nixos/issues/374
 
 In this section we will flash the pinephone with the bootable MobileNixos
 example. Currently it has only an absolute minimum of features, like GUI+Wifi.
-I only tested building MobileNixos image using `binfmt` hack described in [1].
-Original configuration doesn't enable SSH by mistake. This mobile-nixos PR fixes
-it: https://github.com/NixOS/mobile-nixos/pull/455
+I only tested building MobileNixos image using `binfmt` hack described in Tom'f
+blog. The Original configuration doesn't enable SSH by mistake. This
+mobile-nixos PR fixes it: https://github.com/NixOS/mobile-nixos/pull/455
 
-1. Enable the `binfmt` boot option of the Host PC's kernel as described in [1].
+1. Enable the `binfmt` boot option of the Host PC's kernel as described in the
+   Tom'f blog.
 2. Make sure that:
    - External SDcard is flashed with Jumpdrive utility
    - The pinephone is booted from Jumpdrive SDcard, connected to the Host PC and
@@ -89,44 +90,44 @@ it: https://github.com/NixOS/mobile-nixos/pull/455
 
 ### Updating Pinephone over SSH
 
-The below mothod allows one to update [Stage-2
+The below method allows updating the [Stage-2
 software](https://mobile.nixos.org/boot_process.html). The idea is to build the
 toplevel package and then upload it's closure using `nix-copy-closure` over SSH.
-[See also a related PR
-comment](https://github.com/NixOS/mobile-nixos/issues/441#issuecomment-990642848)
+A related [PR comment with a discussion](https://github.com/NixOS/mobile-nixos/issues/441#issuecomment-990642848)
 
-1. Turn the Pinephone on, connect it to your local WiFi network and figure out
-   its IP address. Mine got 192.168.1.38.
+1. Turn the Pinephone on, connect it to a local WiFi network, figure out
+   its IP address. Say, we got a `192.168.1.38`.
 2. Edit the [example.nix](./nix/example.nix) configuration (replace author's SSH
    keys, add packages from the nixpkgs).
 3. Adjust the `DEVIP` variable of
    [build-switch-toplevel.sh](./script/build-switch-toplevel.sh) and run it.
-   Depending on you current SSH settings, the script may ask for ssh password
+   Depending on the current SSH settings, the script may ask for ssh password
    several times (`nixos` by default).
 
-Now the Pinephone software should be switched to the just-built profile. The old
+The Pinephone software should be switched to the just-built profile. The old
 profile should be accessable through the recovery menu (shown at
 reboot+volume up).
 
 ### Setting up a remote build agent
 
-The original post https://nixos.wiki/wiki/Distributed_build
+The source wiki page https://nixos.wiki/wiki/Distributed_build
 
 Here we teach the Host PC's nixos to use the Pinephone as a remote build agent.
 Not sure, but it seems that it works faster than host-based build using qemu
 which also works by default.
 
-1. Determine, which user runs builds on the Host PC. In our case, since we are
-   using build daemon of NixOS, the user is `root`.
-2. Setup the passwordless SSH loging from the Host PC's root user to the
-   pinephone.
+1. Determine which user runs builds on the Host PC. For NixOS hosts, the user is
+   `root`.
+2. Manyally setup the passwordless SSH loging from the Host PC's root user to
+   the pinephone, typically asa follows:
    - Add the root's public SSH keys to the `root@pinephone` (done in
      the [example.nix](./nix/example.nix))
    - Rebuild and switch the Pinephone's configuration with `sh
      script/build-switch-toplevel.sh`
    - Add the `pinephone-builder` section into the `/root/.ssh/config` of the
      Host.
-3. Add the following snippet to the Host PC's configuration:
+3. Assuming that the Host PC is a NixOS, we need to update it's config with a
+   snippet like the following:
    ```nix
    { config, pkgs, ... }:
    {
@@ -143,13 +144,12 @@ which also works by default.
      nix.distributedBuilds = true;
    }
    ```
-5. Test the config with
+5. To test that the Pinephone's store is available:
    ```sh
    (host) $ sudo nix ping-store --store ssh://pinephone-builder && echo ok
    ok
    ```
-6. Now the distributed aarch builder should work on the Pinephone natively. Test
-   with
+6. To make sure that the builder does ditribute builds to the Pinephone:
    ```sh
    (host) $ vim modules/nixpkgs/pkgs/tools/misc/mc/default.nix
    ... edit smth to force rebuilding (TODO: how to --check distributed build?)
@@ -157,30 +157,44 @@ which also works by default.
    ```
 7. Watch the host's log and the pinephone's `htop`.
 
-### Updating the MobileNixos and Nixpkgs submodules
+### On updating the MobileNixos and Nixpkgs submodules
 
-* MobileNixos includes `pkgs.nix` which seems to pin a specific version of
-  nixpkgs
-* An issue with a discussion https://github.com/NixOS/mobile-nixos/issues/93
+* MobileNixos includes [pkgs.nix](./modules/mobile-nixos/pkgs.nix) which seems
+  to pin a specific version of nixpkgs
+* A related issue https://github.com/NixOS/mobile-nixos/issues/93
 * An old comment from 2020 https://discourse.nixos.org/t/build-image-for-pinephone-fail/10002/4
-* For now, I forced MobileNixos to use nixpkgs from the Git-submodule of this
-  repo, and then pinned the submodule to the version mentioned in `pkgs.nix`
+* Scripts from this repo force MobileNixos to use the nixpkgs from the
+  Git-submodule. The submodule, in turn, should be set to the version mentioned
+  in the `pkgs.nix`
 
 
 ### Switching to a Phosh configuration
 
-1. Checkout the right nixpkgs versions
-2. Describe [build-switch-phosh.sh](./script/build-switch-phosh.sh)
-3. TODO
+* The source PR https://github.com/NixOS/mobile-nixos/pull/352
 
-All
+1. Make sure that the Pinephone is on, its Wifi is working and the passwordless
+   SSH login is set up
+2. Run the [build-switch-phosh.sh](./script/build-switch-phosh.sh)
+
+### Running applications from the Phosh configuraiton
+
+For the wayland apps:
 
 * `export WAYLAND_DISPLAY=wayland-0`
 
-Telegram
+For the Telegram
 
 * `export QT_QPA_PLATFORM=wayland`
 
+
+### Running the Phosh config in a QEMU emulator
+
+* A related discussion https://github.com/NixOS/mobile-nixos/issues/3
+
+1. Run [build-switch-phosh.sh](./script/build-switch-phosh.sh) with -S flag
+   ```sh
+   (host) $ sh ./script/build-switch-phosh.sh -S
+   ```
 Notes
 -----
 
