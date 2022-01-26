@@ -184,15 +184,13 @@ which also works by default.
    SSH login is set up
 2. Run the [build-switch-phosh.sh](./script/build-switch-phosh.sh)
 
-### Running applications from the Phosh configuraiton
+### Running applications from the Phosh configuraiton via SSH
 
-For the wayland apps:
-
-* `export WAYLAND_DISPLAY=wayland-0`
-
-For the Telegram
-
-* `export QT_QPA_PLATFORM=wayland`
+1. Login tho the Pinephone using SSH
+2. Set variables
+   * For the wayland apps: `export WAYLAND_DISPLAY=wayland-0`
+   * For the Telegram `export QT_QPA_PLATFORM=wayland`
+3. Run apps from the command line, they should appear on the phone's screen.
 
 ### Running the Phosh config in a QEMU emulator
 
