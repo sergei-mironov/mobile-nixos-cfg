@@ -97,18 +97,21 @@ software](https://mobile.nixos.org/boot_process.html). The idea is to build the
 toplevel package and then upload it's closure using `nix-copy-closure` over SSH.
 A related [PR comment with a discussion](https://github.com/NixOS/mobile-nixos/issues/441#issuecomment-990642848)
 
-1. Turn the Pinephone on, connect it to a local WiFi network, figure out
+1. Make some meaningful changes in the [example.nix](./nix/example.nix)
+   configuration.
+2. Turn the Pinephone on, connect it to a local WiFi network, figure out
    its IP address. Say, we got a `192.168.1.38`.
-2. Edit the [example.nix](./nix/example.nix) configuration (replace author's SSH
-   keys, add packages from the nixpkgs).
 3. Adjust the `DEVIP` variable of
-   [build-switch-toplevel.sh](./script/build-switch-toplevel.sh) and run it.
-   Depending on the current SSH settings, the script may ask for ssh password
-   several times (`nixos` by default).
+   [build-switch-toplevel.sh](./script/build-switch-toplevel.sh) accordingly,
+   and run it. Depending on the current SSH settings, the script may ask for ssh
+   password several times (`nixos` by default).
 
 The Pinephone software should be switched to the just-built profile. The old
 profile should be accessable through the recovery menu (shown at
 reboot+volume up).
+
+Note: [build-switch-phosh.sh](./script/build-switch-phosh.sh) script works with
+the [phosh.nix](./nix/phosh.nix) config in a similar manner.
 
 ### Setting up a remote build agent
 
