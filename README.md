@@ -2,15 +2,15 @@ What is it?
 -----------
 
 This is an umbrella repo for my [Pinephone](https://www.pine64.org/pinephone/)
-and [MobileNixOS](https://mobile.nixos.org/index.html) experiemnts. This repo
-may link other projects as Git submodules. I expect it to contain scripts and
-customized configurations.
+and [MobileNixos](https://mobile.nixos.org/index.html) experiemnts. The repo is
+a bit oldschoolish as it doesn't use NixFlakes. Dependant repositories
+are pinned as Git submodules (use `git clone --recursive ..`).
 
 
 <!-- vim-markdown-ntoc GFM -->
 
 1. [What is it?](#what-is-it?)
-2. [Environment](#environment)
+2. [Hardware](#hardware)
 3. [Usage](#usage)
    * [Flashing external SDcard with Jumpdrive utility](#flashing-external-sdcard-with-jumpdrive-utility)
    * [Flashing the internal eMMC card with a Mobile NixOS example configuration](#flashing-the-internal-emmc-card-with-a-mobile-nixos-example-configuration)
@@ -25,10 +25,10 @@ customized configurations.
 
 <!-- vim-markdown-ntoc -->
 
-Environment
------------
+Hardware
+--------
 
-* [Pinephone](https://www.pine64.org/pinephone/) and a USB cable
+* A [Pinephone](https://www.pine64.org/pinephone/) and a USB cable
 * Host PC with the [Nix](https://nixos.org/nix) package manager installed
 * 32Gb SDcard and USB cardreader
 
