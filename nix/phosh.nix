@@ -19,7 +19,19 @@ in
   ];
   mobile.outputs.uefi.fwd22_port = 22222;
 
-  nixpkgs.system = system;
+  nixpkgs = {
+    system = system;
+    overlays = [
+      # (final: prev: {
+      #   gtk3 = import ../modules/librem-nixos/pkgs/gtk3 {
+      #     inherit lib;
+      #     inherit (prev) gtk3 fetchurl fetchFromGitLab;
+      #   };
+      # })
+      ];
+  };
+
+  programs.geary.enable = false;
   environment.systemPackages = with pkgs; [
     ncdu
     htop
