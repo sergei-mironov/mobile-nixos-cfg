@@ -88,6 +88,8 @@ absolute minimum of features, like GUI+Wifi.
    (pinephone) $ sudo resize2fs /dev/mmcblk2p4
    ```
 
+![](./img/xfce-example.png)
+
 * Note 1: I only tested the `binfmt` hack described in Tomf's blog.
 * Note 2: The Original configuration doesn't enable SSH by mistake. This
   mobile-nixos PR fixes it: https://github.com/NixOS/mobile-nixos/pull/455 In
@@ -184,6 +186,9 @@ which also works by default.
    SSH login is set up
 2. Run the [build-switch-phosh.sh](./script/build-switch-phosh.sh)
 
+
+![](./img/phosh-example.png)
+
 ### Running applications from the Phosh configuraiton via SSH
 
 1. Login tho the Pinephone using SSH
@@ -200,6 +205,8 @@ which also works by default.
    ```sh
    (host) $ sh ./script/run-qemu-phosh.sh
    ```
+
+![](./img/qemu.png)
 
 Notes
 -----
