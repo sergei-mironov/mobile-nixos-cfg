@@ -87,8 +87,9 @@ absolute minimum of features, like GUI+Wifi.
    ... Write the new partition
    (pinephone) $ sudo resize2fs /dev/mmcblk2p4
    ```
-
-![](./img/xfce-example.png | width=200)
+8. The result may look like:
+   
+   <img src="img/xfce-example.png" width="200">
 
 * Note 1: I only tested the `binfmt` hack described in Tomf's blog.
 * Note 2: The Original configuration doesn't enable SSH by mistake. This
@@ -185,9 +186,9 @@ which also works by default.
 1. Make sure that the Pinephone is on, its Wifi is working and the passwordless
    SSH login is set up
 2. Run the [build-switch-phosh.sh](./script/build-switch-phosh.sh)
-
-
-![](./img/phosh-example.png | width=200)
+3. The result may look like
+   
+   <img src="img/phosh-example.png" width="200">
 
 ### Running applications from the Phosh configuraiton via SSH
 
@@ -205,8 +206,13 @@ which also works by default.
    ```sh
    (host) $ sh ./script/run-qemu-phosh.sh
    ```
+2. The result may look like
 
-![](./img/qemu.png | width=200)
+   <img src="img/qemu.png" width="200">
+
+Notes:
+* Actually, building the qemu image takes some time. It may be faster to run simple things on a real device.
+* TODO: figure out how to adjust the screen size to that of real pinephone.
 
 Notes
 -----
