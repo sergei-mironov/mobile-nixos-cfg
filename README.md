@@ -88,7 +88,7 @@ absolute minimum of features, like GUI+Wifi.
    (pinephone) $ sudo resize2fs /dev/mmcblk2p4
    ```
 8. The result may look like:
-   
+
    <img src="img/xfce-example.png" width="200">
 
 * Note 1: I only tested the `binfmt` hack described in Tomf's blog.
@@ -111,6 +111,9 @@ A related [PR comment with a discussion](https://github.com/NixOS/mobile-nixos/i
    [build-switch-toplevel.sh](./script/build-switch-toplevel.sh) accordingly,
    and run it. Depending on the current SSH settings, the script may ask for ssh
    password several times (`nixos` by default).
+   ``` sh
+   (host) $ sh ./script/build-switch-toplevel.sh switch
+   ```
 
 The Pinephone software should be switched to the just-built profile. The old
 profile should be accessable through the recovery menu (shown at
@@ -181,14 +184,19 @@ which also works by default.
 
 ### Switching to a Phosh configuration
 
-* The source PR https://github.com/NixOS/mobile-nixos/pull/352
+* Phosh demo PR https://github.com/NixOS/mobile-nixos/pull/352
+* Pinephone page of NixOS wiki https://nixos.wiki/wiki/PinePhone
 
 1. Make sure that the Pinephone is on, its Wifi is working and the passwordless
    SSH login is set up
 2. Run the [build-switch-phosh.sh](./script/build-switch-phosh.sh)
+   ``` sh
+   (host) $ sh ./script/build-switch-phosh.sh switch
+   ```
 3. The result may look like
-   
+
    <img src="img/phosh-example.png" width="200">
+
 
 ### Running applications from the Phosh configuraiton via SSH
 
