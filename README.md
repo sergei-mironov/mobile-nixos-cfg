@@ -88,7 +88,7 @@ absolute minimum of features, like GUI+Wifi.
    (pinephone) $ sudo resize2fs /dev/mmcblk2p4
    ```
 
-![](./img/xfce-example.png)
+![](./img/xfce-example.png | width=200)
 
 * Note 1: I only tested the `binfmt` hack described in Tomf's blog.
 * Note 2: The Original configuration doesn't enable SSH by mistake. This
@@ -187,7 +187,7 @@ which also works by default.
 2. Run the [build-switch-phosh.sh](./script/build-switch-phosh.sh)
 
 
-![](./img/phosh-example.png)
+![](./img/phosh-example.png | width=200)
 
 ### Running applications from the Phosh configuraiton via SSH
 
@@ -206,7 +206,7 @@ which also works by default.
    (host) $ sh ./script/run-qemu-phosh.sh
    ```
 
-![](./img/qemu.png)
+![](./img/qemu.png | width=200)
 
 Notes
 -----
