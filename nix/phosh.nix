@@ -21,17 +21,12 @@ in
 
   nixpkgs = {
     system = system;
-    overlays = [
-      # (final: prev: {
-      #   gtk3 = import ../modules/librem-nixos/pkgs/gtk3 {
-      #     inherit lib;
-      #     inherit (prev) gtk3 fetchurl fetchFromGitLab;
-      #   };
-      # })
-      ];
+    overlays = [ (import ../modules/librem-nixos) ];
   };
 
   programs.geary.enable = false;
+  programs.calls.enable = true;
+
   environment.systemPackages = with pkgs; [
     ncdu
     htop
@@ -39,6 +34,8 @@ in
     xlibs.xeyes
     tdesktop
     firefox-wayland
+
+    chatty
   ];
 
   users.users.nixos = {

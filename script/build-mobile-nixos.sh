@@ -8,12 +8,16 @@ ARGS=
 CFG=
 SYS="aarch64-linux"
 TGT=pine64-pinephone
+SSHUSER=
+DOSWITCH=n
 while test -n "$1" ; do
   case "$1" in
     -A) ATTR="$2"; shift ;;
     -o) OUT="$2"; shift ;;
     -C) CFG="$2"; shift ;;
     -S) SYS="x86_64-linux"; TGT=uefi-x86_64 ;;
+    -U|--ssh-user) SSHUSER="$2"; shift ;;
+    switch) DOSWITCH=y ;;
     *) ARGS="$ARGS $1" ;;
   esac
   shift
@@ -57,4 +61,15 @@ nix-build \
   -o "$OUT" \
   modules/mobile-nixos \
   $ARGS
+
+if test "$DOSWITCH" = "y" ; then
+  if test -n "$SSHUSER" ; then
+    RESULT=$(readlink "$OUT")
+    nix-copy-closure --to "$SSHUSER" "$RESULT"
+    ssh "$SSHUSER" nix-env --profile /nix/var/nix/profiles/system --set "$RESULT"
+    ssh "$SSHUSER" "$RESULT/bin/switch-to-configuration" switch
+  else
+    die "-U SSHUSER is not set"
+  fi
+fi
 
