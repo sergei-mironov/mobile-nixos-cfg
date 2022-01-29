@@ -3,8 +3,10 @@ What is it?
 
 This is an umbrella repo for my [Pinephone](https://www.pine64.org/pinephone/)
 and [MobileNixos](https://mobile.nixos.org/index.html) experiemnts. The repo is
-a bit oldschoolish as it doesn't use NixFlakes. Dependant repositories
+a bit oldschoolish as it doesn't use NixFlakes.Dependant repositories
 are pinned as Git submodules (use `git clone --recursive ..`).
+
+
 
 
 <!-- vim-markdown-ntoc GFM -->
@@ -12,6 +14,7 @@ are pinned as Git submodules (use `git clone --recursive ..`).
 1. [What is it?](#what-is-it?)
 2. [Hardware](#hardware)
 3. [Usage](#usage)
+   * [Entering Host's environment](#entering-host's-environment)
    * [Flashing external SDcard with Jumpdrive utility](#flashing-external-sdcard-with-jumpdrive-utility)
    * [Flashing the internal eMMC card with a Mobile NixOS example configuration](#flashing-the-internal-emmc-card-with-a-mobile-nixos-example-configuration)
    * [Updating Pinephone over SSH](#updating-pinephone-over-ssh)
@@ -22,7 +25,6 @@ are pinned as Git submodules (use `git clone --recursive ..`).
    * [Running the Phosh config in a QEMU emulator](#running-the-phosh-config-in-a-qemu-emulator)
 4. [Notes](#notes)
 5. [Resources](#resources)
-
 <!-- vim-markdown-ntoc -->
 
 Hardware
@@ -35,6 +37,12 @@ Hardware
 Usage
 -----
 
+### Entering Host's environment
+
+1. Checkout the submodules `(host) $ git submodule update --init`
+2. Enter the nix-shell as it sets the `PATH` and `NIX_PATH`: `(host) $
+   nix-shell`.
+
 ### Flashing external SDcard with Jumpdrive utility
 
 * The original document https://wiki.pine64.org/wiki/PinePhone_Installation_Instructions#Using_JumpDrive
@@ -43,7 +51,7 @@ Usage
 The algorithm:
 
 1. Insert the TF-sdcard to your cardreader and connect it to the Host PC
-2. Run the [flash-jumpdrive.sh](./script/flash-jumpdrive.sh) script `sh
+2. Run the [flash-jumpdrive.sh](https://github.com/grwlf/mobile-nixos-tools/blob/main/sh/flash-jumpdrive.sh#L1) script `sh
    ./script/flash-jumpdrive.sh`
 3. Make sure the script detects the sdcard correctly, press `y`
 4. Type in the `sudo` password if set. The sdcard is now the jumpdrive sdcard
@@ -61,7 +69,7 @@ Now one can flash the phone's internal eMMC from the Host PC.
 * A status Issue on MobileNixos installer https://github.com/NixOS/mobile-nixos/issues/374
 
 Here we flash the Pinephone with the bootable MobileNixos
-configuration named [example.nix](./nix/example.nix). Currently it has only an
+configuration [example.nix](https://github.com/grwlf/mobile-nixos-tools/blob/main/nix/example.nix#L1). Currently it has only an
 absolute minimum of features, like GUI+Wifi.
 
 1. Enable the `binfmt` boot option of the Host PC's kernel as described in the
@@ -73,9 +81,9 @@ absolute minimum of features, like GUI+Wifi.
 3. Make sure that `mobile-nixos` and `nixpkgs` submodules are checked-out (`git
    submodule update --init --recursive`).
 4. Edit the `DEVL` variable of
-   [flash-mobile-nixos](./script/flash-mobile-nixos.sh). Set it to the correct name
+   [flash-mobile-nixos](https://github.com/grwlf/mobile-nixos-tools/blob/main/sh/flash-mobile-nixos.sh#L1). Set it to the correct name
    of internal eMMC device.
-5. Run `sh script/flash-mobile-nixos.sh`
+5. Run `flash-mobile-nixos.sh`
 6. Upon completion, turn the Pinephone off, remove the Jumpdrive sdcard from the
    Pinephone and turn it on again. Nixos XFCE example image should boot and the
    XFCE desktop should finally appear.
@@ -103,24 +111,26 @@ software](https://mobile.nixos.org/boot_process.html). The idea is to build the
 toplevel package and then upload it's closure using `nix-copy-closure` over SSH.
 A related [PR comment with a discussion](https://github.com/NixOS/mobile-nixos/issues/441#issuecomment-990642848)
 
-1. Make some meaningful changes in the [example.nix](./nix/example.nix)
+1. Make meaningful changes in the `example.nix`
    configuration.
 2. Turn the Pinephone on, connect it to a local WiFi network, figure out
    its IP address. Say, we got a `192.168.1.38`.
 3. Adjust the `DEVIP` variable of
-   [build-switch-toplevel.sh](./script/build-switch-toplevel.sh) accordingly,
+   [build-switch-toplevel.sh](https://github.com/grwlf/mobile-nixos-tools/blob/main/sh/build-switch-toplevel.sh#L1) accordingly,
    and run it. Depending on the current SSH settings, the script may ask for ssh
    password several times (`nixos` by default).
    ``` sh
-   (host) $ sh ./script/build-switch-toplevel.sh switch
+   (host) $ build-switch-toplevel.sh switch
    ```
 
 The Pinephone software should be switched to the just-built profile. The old
 profile should be accessable through the recovery menu (shown at
 reboot+volume up).
 
-Note: [build-switch-phosh.sh](./script/build-switch-phosh.sh) script works with
-the [phosh.nix](./nix/phosh.nix) config in a similar manner.
+Note:
+[build-switch-phosh.sh](https://github.com/grwlf/mobile-nixos-tools/blob/main/sh/build-switch-phosh.sh#L1)
+script works with
+the [phosh.nix](https://github.com/grwlf/mobile-nixos-tools/blob/main/nix/phosh.nix#L1) config in a similar manner.
 
 ### Setting up a remote build agent
 
@@ -135,9 +145,9 @@ which also works by default.
 2. Manyally setup the passwordless SSH loging from the Host PC's root user to
    the pinephone, typically asa follows:
    - Add the root's public SSH keys to the `root@pinephone` (done in
-     the [example.nix](./nix/example.nix))
-   - Rebuild and switch the Pinephone's configuration with `sh
-     script/build-switch-toplevel.sh`
+     the `example.nix`.
+   - Rebuild and switch the Pinephone's configuration with
+     `build-switch-toplevel.sh switch`
    - Add the `pinephone-builder` section into the `/root/.ssh/config` of the
      Host.
 3. Assuming that the Host PC is a NixOS, we need to update it's config with a
@@ -167,7 +177,7 @@ which also works by default.
    ```sh
    (host) $ vim modules/nixpkgs/pkgs/tools/misc/mc/default.nix
    ... edit smth to force rebuilding (TODO: how to --check distributed build?)
-   (host) $ sh script/build-mobile-nixos.sh -j0 -A pkgs.mc
+   (host) $ build-mobile-nixos.sh -j0 -A pkgs.mc
    ```
 7. Watch the host's log and the pinephone's `htop`.
 
@@ -189,9 +199,9 @@ which also works by default.
 
 1. Make sure that the Pinephone is on, its Wifi is working and the passwordless
    SSH login is set up
-2. Run the [build-switch-phosh.sh](./script/build-switch-phosh.sh)
+2. Run the `build-switch-phosh.sh`
    ``` sh
-   (host) $ sh ./script/build-switch-phosh.sh switch
+   (host) $ build-switch-phosh.sh switch
    ```
 3. The result may look like
 
@@ -210,9 +220,9 @@ which also works by default.
 
 * A related discussion https://github.com/NixOS/mobile-nixos/issues/3
 
-1. Run [run-qemu-phosh.sh](./script/run-qemu-phosh.sh).
+1. Run `run-qemu-phosh.sh`.
    ```sh
-   (host) $ sh ./script/run-qemu-phosh.sh
+   (host) $ run-qemu-phosh.sh
    ```
 2. The result may look like
 

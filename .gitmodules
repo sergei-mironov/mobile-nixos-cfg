@@ -4,3 +4,9 @@
 [submodule "modules/nixpkgs"]
 	path = modules/nixpkgs
 	url = https://github.com/NixOS/nixpkgs.git
+[submodule "modules/mobile-nixos-tools"]
+	path = modules/mobile-nixos-tools
+	url = https://github.com/grwlf/mobile-nixos-tools.git
+[submodule "modules/librem-nixos"]
+	path = modules/librem-nixos
+	url = https://github.com/zhaofengli/librem-nixos
