@@ -3,18 +3,14 @@ What is it?
 
 This is an umbrella repo for my [Pinephone](https://www.pine64.org/pinephone/)
 and [MobileNixos](https://mobile.nixos.org/index.html) experiemnts. The repo is
-a bit oldschoolish as it doesn't use NixFlakes.Dependant repositories
+a bit oldschoolish as it doesn't use NixFlakes. The dependant repositories
 are pinned as Git submodules (use `git clone --recursive ..`).
 
-
-
-
-<!-- vim-markdown-ntoc GFM -->
 
 1. [What is it?](#what-is-it?)
 2. [Hardware](#hardware)
 3. [Usage](#usage)
-   * [Entering Host's environment](#entering-host's-environment)
+   * [How to use this repository](#how-to-use-this-repository)
    * [Flashing external SDcard with Jumpdrive utility](#flashing-external-sdcard-with-jumpdrive-utility)
    * [Flashing the internal eMMC card with a Mobile NixOS example configuration](#flashing-the-internal-emmc-card-with-a-mobile-nixos-example-configuration)
    * [Updating Pinephone over SSH](#updating-pinephone-over-ssh)
@@ -25,22 +21,22 @@ are pinned as Git submodules (use `git clone --recursive ..`).
    * [Running the Phosh config in a QEMU emulator](#running-the-phosh-config-in-a-qemu-emulator)
 4. [Notes](#notes)
 5. [Resources](#resources)
-<!-- vim-markdown-ntoc -->
+
 
 Hardware
 --------
 
 * A [Pinephone](https://www.pine64.org/pinephone/) and a USB cable
-* Host PC with the [Nix](https://nixos.org/nix) package manager installed
+* A host PC with the [Nix](https://nixos.org/nix) package manager installed
 * 32Gb SDcard and USB cardreader
 
 Usage
 -----
 
-### Entering Host's environment
+### How to use this repository
 
-1. Checkout the submodules `(host) $ git submodule update --init`
-2. Enter the nix-shell as it sets the `PATH` and `NIX_PATH`: `(host) $
+1. Checkout the Git submodules `(host) $ git submodule update --init`
+2. Enter the nix-shell to set the `PATH` and `NIX_PATH` variable: `(host) $
    nix-shell`.
 
 ### Flashing external SDcard with Jumpdrive utility
