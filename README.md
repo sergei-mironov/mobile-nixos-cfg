@@ -206,11 +206,21 @@ which also works by default.
 
 ### Running applications from the Phosh configuraiton via SSH
 
+**GUI on the phone's screen**
+
 1. Login tho the Pinephone using SSH
 2. Set variables
    * For the wayland apps: `export WAYLAND_DISPLAY=wayland-0`
    * For the Telegram `export QT_QPA_PLATFORM=wayland`
 3. Run apps from the command line, they should appear on the phone's screen.
+
+**GUI on the host**
+
+1. Install `weston` and `waypipe`
+2. Run `weston` as host's X-client. Click on the termina icon
+3. Run `(host+weston) $ waypipe ssh nixos@pinephone <WAYLAND_APP>`. See the
+   application's screen appear inside the weston window on the host.
+
 
 ### Running the Phosh config in a QEMU emulator
 
