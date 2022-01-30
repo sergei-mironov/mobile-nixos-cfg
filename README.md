@@ -252,7 +252,8 @@ Resources
 * Custom Qemu port (no GPU) https://unxp.fr/post/2020/pinephone_on_qemu_emulation/
 * PR related to the emulation https://github.com/NixOS/mobile-nixos/pull/253
 * NixOS wiki on Aarch64 emulation https://nixos.wiki/wiki/NixOS_on_ARM#Compiling_through_QEMU
-* PR+discussion about the emulation https://github.com/NixOS/mobile-nixos/issues/3
+* PR, emulation https://github.com/NixOS/mobile-nixos/issues/3
+* Issue, power consumption https://github.com/NixOS/mobile-nixos/issues/13
 
 **PinePhone general**
 
@@ -263,6 +264,7 @@ Resources
 * PostmarketOS docs on Pinephone https://wiki.postmarketos.org/wiki/PINE64_PinePhone_(pine64-pinephone)
 * Jumpdrive https://github.com/dreemurrs-embedded/Jumpdrive
 * Jumpdrive boot menu issue https://github.com/dreemurrs-embedded/Jumpdrive/issues/11
+* Power consumption tread https://github.com/crust-firmware/crust
 
 **Mobile nixers**
 
