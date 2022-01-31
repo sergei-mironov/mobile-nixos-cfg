@@ -19,9 +19,9 @@ are pinned as Git submodules (use `git clone --recursive ..`).
    * [Switching to a Phosh configuration](#switching-to-a-phosh-configuration)
    * [Running applications from the Phosh configuraiton via SSH](#running-applications-from-the-phosh-configuraiton-via-ssh)
    * [Running the Phosh config in a QEMU emulator](#running-the-phosh-config-in-a-qemu-emulator)
+   * [Power consumption](#power-consumption)
 4. [Notes](#notes)
 5. [Resources](#resources)
-
 
 Hardware
 --------
@@ -238,6 +238,17 @@ Notes:
 * Actually, building the qemu image takes some time. It may be faster to run simple things on a real device.
 * TODO: figure out how to adjust the screen size to that of real pinephone.
 
+### Power consumption
+
+Well, Pinephone heats and drains the battery.
+
+**Modem**
+
+* Issue with a discussion https://github.com/NixOS/mobile-nixos/issues/348#issuecomment-874139184
+  - MobileNixos uses Megi's modem driver. An alternative approach would be to
+    port e25-manager
+* Megi driver docs https://xnux.eu/devices/feature/modem-pp.html
+
 Notes
 -----
 
@@ -252,6 +263,7 @@ Resources
 * NixOS wiki about Pinephones https://nixos.wiki/wiki/PinePhone
 * PR about Phosh integration https://github.com/NixOS/mobile-nixos/pull/352
 * All Pinephone open issues and PRs https://github.com/NixOS/mobile-nixos/issues?q=is%3Aopen+pinephone
+* Megi's modem driver https://xnux.eu/devices/feature/modem-pp.html
 
 **MobileNixos general**
 
