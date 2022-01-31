@@ -100,7 +100,20 @@ absolute minimum of features, like GUI+Wifi.
   mobile-nixos PR fixes it: https://github.com/NixOS/mobile-nixos/pull/455 In
   this repo the changes should be already applied.
 
-### Updating Pinephone over SSH
+### Determining the version of Pinephone's hardware
+
+* https://forum.manjaro.org/t/manjaro-arm-beta13-with-phosh-pinephone/79665/15
+
+```sh
+(pinephone) $ cat /proc/device-tree/model
+1.2
+```
+
+1.1 is the Braveheart and 1.2 is a Community or Beta PinePhone. However
+Community editions have subversions like 1.2, 1.2a, 1.2b. Those might have
+additional hardware fixes.
+
+### Updating Mobilenixos over SSH
 
 The below method allows updating the [Stage-2
 software](https://mobile.nixos.org/boot_process.html). The idea is to build the
@@ -244,6 +257,7 @@ Well, Pinephone heats and drains the battery.
 
 **Modem**
 
+* An idea is to update the Pinephone's modem, according to https://forum.manjaro.org/t/manjaro-arm-beta13-with-phosh-pinephone/79665/14
 * Issue with a discussion https://github.com/NixOS/mobile-nixos/issues/348#issuecomment-874139184
   - MobileNixos uses Megi's modem driver. An alternative approach would be to
     port e25-manager
@@ -287,6 +301,7 @@ Resources
 * Jumpdrive https://github.com/dreemurrs-embedded/Jumpdrive
 * Jumpdrive boot menu issue https://github.com/dreemurrs-embedded/Jumpdrive/issues/11
 * Power consumption tread https://github.com/crust-firmware/crust
+* On updating the modem's firmware https://forum.manjaro.org/t/manjaro-arm-beta13-with-phosh-pinephone/79665/14
 
 **Mobile nixers**
 
