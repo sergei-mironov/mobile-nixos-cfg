@@ -8,7 +8,7 @@ let
     collection = rec {
       shell = pkgs.mkShell {
         name = "shell";
-        buildInputs = [];
+        buildInputs = with pkgs; [ weston waypipe ];
         shellHook = with pkgs; ''
           if test -f ./env.sh ; then
             . ./env.sh
