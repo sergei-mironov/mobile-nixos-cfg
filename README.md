@@ -251,23 +251,45 @@ Notes:
 * Actually, building the qemu image takes some time. It may be faster to run simple things on a real device.
 * TODO: figure out how to adjust the screen size to that of real pinephone.
 
-### Power consumption
+### Updating the GSM modem's firmware
 
-Well, Pinephone heats and drains the battery.
+**WIP**
 
-**Modem**
-
-* An idea is to update the Pinephone's modem, according to https://forum.manjaro.org/t/manjaro-arm-beta13-with-phosh-pinephone/79665/14
+* Quectel fw https://github.com/Biktorgj/quectel_eg25_recovery/tree/EG25GGBR07A08M2G_01.002.07
+  - [Stable branch (at the time of the writing)](https://github.com/Biktorgj/quectel_eg25_recovery/tree/EG25GGBR07A08M2G_01.002.01.002)
+* Alternative open-source fw (probably, risky) https://github.com/Biktorgj/pinephone_modem_sdk
+* Megi driver docs https://xnux.eu/devices/feature/modem-pp.html
+* Manjaro discussion https://forum.manjaro.org/t/manjaro-arm-beta13-with-phosh-pinephone/79665/14
 * Issue with a discussion https://github.com/NixOS/mobile-nixos/issues/348#issuecomment-874139184
   - MobileNixos uses Megi's modem driver. An alternative approach would be to
     port e25-manager
-* Megi driver docs https://xnux.eu/devices/feature/modem-pp.html
+* Pinephone's own page on fw update https://wiki.pine64.org/wiki/PinePhone#Firmware_update
+* My issue regarding the EDL mode https://github.com/Biktorgj/quectel_eg25_recovery/issues/13
+
+1. Make sure `pkgs.android-tools` is in the phone's configuration.
+2. Unlock the adb
+   ```sh
+   (pinephone) $ curl https://xnux.eu/devices/feature/qadbkey-unlock.c > qadbkey-unlock.c
+   (pinephone) $ gcc qadbkey-unlock.c -lcrypt -o qadbkey-unlock
+   (pinephone) $ journalctl -b | grep 'ADB KEY'
+   ... ADB KEY is '31281228' ...
+   ```
+2. Stop the ModemManager `(pinephone) $ systemctl stop ModemManager`
+
+TODO
+
 
 Notes
 -----
 
 * To make a shallow fetch of a specific commit, do
   `git fetch --depth 1 origin <commit>`
+
+### Hotspot issues
+
+* https://ivoberger.com/posts/port-forwarding-with-iptables/
+* Install legace iptables, disable the firewall
+* Set `iptables -t nat -A POSTROUTING ! -s 127.0.0.1 -j MASQUERADE`
 
 Resources
 ---------
