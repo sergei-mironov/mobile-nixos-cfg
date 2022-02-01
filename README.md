@@ -20,7 +20,7 @@ are pinned as Git submodules (use `git clone --recursive ..`).
    * [Switching to a Phosh configuration](#switching-to-a-phosh-configuration)
    * [Running applications from the Phosh configuraiton via SSH](#running-applications-from-the-phosh-configuraiton-via-ssh)
    * [Running the Phosh config in a QEMU emulator](#running-the-phosh-config-in-a-qemu-emulator)
-   * [Updating the GSM modem's firmware](#updating-the-gsm-modem's-firmware)
+   * [Updating the modem firmware](#updating-the-modem-firmware)
 4. [Notes](#notes)
    * [Hotspot issues](#hotspot-issues)
    * [USB network issues](#usb-network-issues)
@@ -254,7 +254,7 @@ Notes:
 * Actually, building the qemu image takes some time. It may be faster to run simple things on a real device.
 * TODO: figure out how to adjust the screen size to that of real pinephone.
 
-### Updating the GSM modem's firmware
+### Updating the modem firmware
 
 This is a hard one.
 
