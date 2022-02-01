@@ -299,8 +299,18 @@ This is a hard one.
 Notes
 -----
 
+### Shallo fetches
+
 * To make a shallow fetch of a specific commit, do
-  `git fetch --depth 1 origin <commit>`
+  `git fetch [remote] --depth 1 origin <full_commit_hash>`
+
+### Power consumption
+
+* Get eg25-manager to work https://github.com/NixOS/mobile-nixos/issues/348
+* Some docs in power subsystem
+  - https://www.kernel.org/doc/html/latest/power/pci.html
+    + search for `SET_SYSTEM_SLEEP_PM_OPS`
+  - https://www.kernel.org/doc/html/v4.14/driver-api/pm/devices.html
 
 ### Hotspot issues
 
@@ -313,6 +323,10 @@ Notes
 
 * Sometimes host can't receive the IP addres. One could set it manually to
   `172.16.42.2` and connect to `172.16.42.1`
+
+### Downloading kernel source
+
+`build-switch-phosh.sh -A config.system.build.kernel.src`
 
 Resources
 ---------
