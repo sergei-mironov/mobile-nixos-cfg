@@ -307,10 +307,17 @@ Notes
 ### Power consumption
 
 * Get eg25-manager to work https://github.com/NixOS/mobile-nixos/issues/348
+  - As I wrote in this issue, it turns out that Megi's driver is probably better
+    than eg25-manager in terms of power management. Still, eg25-manager does
+    have some benefits in terms of GPS management and voice calls settings.
 * Some docs in power subsystem
   - https://www.kernel.org/doc/html/latest/power/pci.html
     + search for `SET_SYSTEM_SLEEP_PM_OPS`
   - https://www.kernel.org/doc/html/v4.14/driver-api/pm/devices.html
+* Crust firmware
+  - Probably, it is already installed in Pinephones >= 1.2
+  - Crust wifi thread on Pine64 https://forum.pine64.org/showthread.php?tid=11184
+  - Crust deep sleep thread on Pine64 https://forum.pine64.org/showthread.php?tid=9957&page=6&highlight=crust+data
 
 ### Hotspot issues
 
@@ -328,6 +335,22 @@ Notes
 
 `build-switch-phosh.sh -A config.system.build.kernel.src`
 
+### Time issue
+
+1. Disable systemd-timesyncd
+2. Observe constant fast time drift (pinephone time runs too slow)
+3. ???
+4. Ill CPU power management?
+
+* Maybe related https://github.com/dreemurrs-embedded/Pine64-Arch/issues/102
+* Linux kernel errata (applied) https://github.com/torvalds/linux/commit/c950ca8c35eeb32224a63adc47e12f9e226da241#diff-10fe2705e153944cac3d1eff7e1d975c
+* Linux kernel patch (also applied) https://patchwork.kernel.org/project/linux-arm-kernel/patch/20210515021439.55316-1-samuel@sholland.org/
+* test_timer.c (shows all OKs) https://github.com/apritzel/pine64/blob/master/tools/test_timer.c
+
+* Read the time from server from CLI: `wget -q -O- time.nist.gov:13 | awk '{print $2,$3}' | grep -v "^ *$" | (read t; date "+%Y-%m-%d %H:%M:%S %Z" -d "$t +0000")`
+* Posted to a Pine64 forum https://forum.pine64.org/showthread.php?tid=15977
+* Overclocking wiki page https://wiki.pine64.org/index.php/Overclocking
+
 Resources
 ---------
 
@@ -340,6 +363,7 @@ Resources
 * Mobilenixos+modem issue https://github.com/NixOS/mobile-nixos/issues/348#issuecomment-874139184
   - MobileNixos uses Megi's modem driver. An alternative approach would be to
     port e25-manager
+* Linux kernel device tree at the time of the writing https://github.com/megous/linux/blob/b1f383fd3c70e21a8062fdc3f59403d2a26edc9f/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone-1.2.dts#L1
 
 **MobileNixos general**
 
@@ -362,7 +386,7 @@ Resources
 * PostmarketOS docs on Pinephone https://wiki.postmarketos.org/wiki/PINE64_PinePhone_(pine64-pinephone)
 * Jumpdrive https://github.com/dreemurrs-embedded/Jumpdrive
 * Jumpdrive boot menu issue https://github.com/dreemurrs-embedded/Jumpdrive/issues/11
-* Power consumption tread https://github.com/crust-firmware/crust
+* Crust firmware Github page https://github.com/crust-firmware/crust
 * On updating the modem's firmware https://forum.manjaro.org/t/manjaro-arm-beta13-with-phosh-pinephone/79665/14
 * Megi modem driver docs https://xnux.eu/devices/feature/modem-pp.html
 * Manjaro modem discussion https://forum.manjaro.org/t/manjaro-arm-beta13-with-phosh-pinephone/79665/14
