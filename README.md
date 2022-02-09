@@ -22,8 +22,12 @@ are pinned as Git submodules (use `git clone --recursive ..`).
    * [Running the Phosh config in a QEMU emulator](#running-the-phosh-config-in-a-qemu-emulator)
    * [Updating the modem firmware](#updating-the-modem-firmware)
 4. [Notes](#notes)
+   * [Shallo fetches](#shallo-fetches)
+   * [Power consumption](#power-consumption)
    * [Hotspot issues](#hotspot-issues)
    * [USB network issues](#usb-network-issues)
+   * [Downloading kernel source](#downloading-kernel-source)
+   * [Time issue](#time-issue)
 5. [Resources](#resources)
 
 Hardware
@@ -337,27 +341,8 @@ Notes
 
 ### Time issue
 
-1. Disable systemd-timesyncd
-2. Observe constant fast time drift (pinephone time runs too slow)
-3. ???
-4. Ill CPU power management?
-5. Ideas:
-   - Implement the clockmon.sh as a systemd service
-   - Disable HCTOSYS in kernel's parameters, to not trust /dev/rtc0
-
-* Maybe related https://github.com/dreemurrs-embedded/Pine64-Arch/issues/102
-* Linux kernel errata (applied) https://github.com/torvalds/linux/commit/c950ca8c35eeb32224a63adc47e12f9e226da241#diff-10fe2705e153944cac3d1eff7e1d975c
-* Linux kernel patch (also applied) https://patchwork.kernel.org/project/linux-arm-kernel/patch/20210515021439.55316-1-samuel@sholland.org/
-* test_timer.c (shows all OKs) https://github.com/apritzel/pine64/blob/master/tools/test_timer.c
-
-* Read the time from server from CLI: `wget -q -O- time.nist.gov:13 | awk '{print $2,$3}' | grep -v "^ *$" | (read t; date "+%Y-%m-%d %H:%M:%S %Z" -d "$t +0000")`
-* Issue topicn on a Pine64 forum https://forum.pine64.org/showthread.php?tid=15977
-* The same issue in Crust https://github.com/crust-firmware/crust/issues/203
-  - https://linux-sunxi.org/images/b/b4/Allwinner_A64_User_Manual_V1.1.pdf
-  - `devmem2 0x01f00008 h 0xc`
-* Overclocking wiki page https://wiki.pine64.org/index.php/Overclocking
-* An interesting kernel patch http://lkml.iu.edu/hypermail/linux/kernel/1106.0/00009.html
-  - https://github.com/megous/linux/blob/b1f383fd3c70e21a8062fdc3f59403d2a26edc9f/kernel/time/timekeeping.c#L1861
+Author's phone probably has a defected crystall on a low-precision clock.
+* Crust issue (resolved) https://github.com/crust-firmware/crust/issues/203
 
 Resources
 ---------
