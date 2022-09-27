@@ -334,6 +334,10 @@ Notes
 
 * Sometimes host can't receive the IP addres. One could set it manually to
   `172.16.42.2` and connect to `172.16.42.1`
+  
+  ```
+  sudo ifconfig enp0s20f0u1 172.16.42.2 netmask 255.255.255.0
+  ```
 
 ### Downloading kernel source
 
